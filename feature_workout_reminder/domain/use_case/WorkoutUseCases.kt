@@ -4,5 +4,5 @@ data class WorkoutUseCases(
     val getWorkout: GetWorkout,
     val getWorkouts: GetWorkouts,
     val deleteWorkout: DeleteWorkout,
-    val addWorkout: AddWorkout
+    val addWorkout: AddWorkout,
 )

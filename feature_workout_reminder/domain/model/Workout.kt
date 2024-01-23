@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class Workout(
     val title: String,
     val description: String,
-    val timestamp: Long,
-    val done: Boolean,
+    val duration: Long,
+    val completed: Boolean,
     @PrimaryKey val id: Int? = null
 )
 

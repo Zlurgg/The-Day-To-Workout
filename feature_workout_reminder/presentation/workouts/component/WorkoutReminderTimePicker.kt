@@ -1,4 +1,4 @@
-package uk.co.zlurgg.thedaytoworkout.feature_workout_reminder.presentation.home.component
+package uk.co.zlurgg.thedaytoworkout.feature_workout_reminder.presentation.workouts.component
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -9,7 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Timelapse
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,8 +38,8 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun TimePickerItem(
-    modifier: Modifier = Modifier
+fun WorkoutReminderTimePicker(
+    modifier: Modifier = Modifier,
 ) {
     lateinit var checkNotificationPermission: ActivityResultLauncher<String>
     var isPermission: Boolean
@@ -60,14 +63,18 @@ fun TimePickerItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Text(
+            text = "Reminder time:",
+            style = MaterialTheme.typography.titleLarge
+        )
         Button(
             shape = MaterialTheme.shapes.extraSmall,
             onClick = {
             timeDialogState.show()
         }) {
-            Text(
-                text = "Set workout time",
-                style = MaterialTheme.typography.titleLarge
+            Icon(
+                imageVector = Icons.Default.Timelapse,
+                contentDescription = "workout notification time"
             )
         }
         Spacer(modifier = modifier.height(paddingMedium))
@@ -117,5 +124,5 @@ fun TimePickerItem(
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 private fun TimePickerPreview() {
-    TimePickerItem()
+    WorkoutReminderTimePicker()
 }

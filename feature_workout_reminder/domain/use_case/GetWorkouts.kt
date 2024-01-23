@@ -11,21 +11,21 @@ class GetWorkouts(
     private val repository: WorkoutRepository
 ) {
     operator fun invoke(
-        workoutOrder: WorkoutOrder = WorkoutOrder.Date(OrderType.Descending)
+        workoutOrder: WorkoutOrder = WorkoutOrder.Title(OrderType.Descending)
     ): Flow<List<Workout>> {
         return repository.getWorkouts().map { workouts ->
             when (workoutOrder.orderType) {
                 is OrderType.Ascending -> {
                     when (workoutOrder) {
                         is WorkoutOrder.Title -> workouts.sortedBy { it.title.lowercase() }
-                        is WorkoutOrder.Date -> workouts.sortedBy { it.timestamp }
+                        is WorkoutOrder.Duration -> workouts.sortedBy { it.duration}
                         is WorkoutOrder.Description -> workouts.sortedBy { it.description.lowercase() }
                     }
                 }
                 is OrderType.Descending -> {
                     when (workoutOrder) {
                         is WorkoutOrder.Title -> workouts.sortedByDescending { it.title.lowercase() }
-                        is WorkoutOrder.Date -> workouts.sortedByDescending { it.timestamp }
+                        is WorkoutOrder.Duration -> workouts.sortedByDescending { it.duration }
                         is WorkoutOrder.Description -> workouts.sortedByDescending { it.description.lowercase() }
                     }
                 }
